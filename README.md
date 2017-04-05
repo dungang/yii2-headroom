@@ -1,6 +1,8 @@
 # yii2-headroom
 
-headroom.js#0.9.3
+headroom.js#0.9.3 
+
+http://wicky.nillia.ms/headroom.js/
 
 > 安装
 
