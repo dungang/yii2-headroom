@@ -17,8 +17,5 @@ class HeadRoomAsset extends AssetBundle
     {
         $this->sourcePath = __DIR__ . '/assets';
         $this->js = ['headroom.min.js'];
-        $this->depends = [
-            'yii\web\YiiAsset',
-        ];
     }
 }

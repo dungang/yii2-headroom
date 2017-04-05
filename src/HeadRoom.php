@@ -14,24 +14,36 @@ use yii\helpers\Json;
 class HeadRoom extends Widget
 {
 
-    public $options;
+    public $closeDefaultCss = false;
+
+    public $options = [
+        'offset' => 205,
+        'tolerance' => [
+            'down' => 10,
+            'up' => 20
+        ]
+    ];
 
     public function run()
     {
-        $options = $this->options ? Json::encode($this->options):'';
-        $this->getView()->registerJs("$('#$this->id').headroom($options)");
-        $this->getView()->registerCss("
+        $view = $this->getView();
+        HeadRoomAsset::register($view);
+        $options = $this->options ? Json::encode($this->options) : '{}';
+        $view->registerJs("(function(){new Headroom(document.getElementById('$this->id'),$options).init();}());");
+        if (!$this->closeDefaultCss) {
+            $view->registerCss("
             .headroom {
                 will-change: transform;
-                transition: transform 200ms linear;
+                transition: transform .25s ease-in-out;
             }
             .headroom--pinned {
                 transform: translateY(0%);
             }
             .headroom--unpinned {
-                transform: translateY(-100%);
+                transform: translateY(-105%);
             }
         ");
+        }
         return null;
     }
 }
