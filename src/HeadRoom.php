@@ -29,7 +29,7 @@ class HeadRoom extends Widget
         $view = $this->getView();
         HeadRoomAsset::register($view);
         $options = $this->options ? Json::encode($this->options) : '{}';
-        $view->registerJs("(function(){new Headroom(document.getElementById('$this->id'),$options).init();}());");
+        $view->registerJs("(function(){new Headroom(document.getElementById('$this->id'),$options).init();})();");
         if (!$this->closeDefaultCss) {
             $view->registerCss("
             .headroom {
